@@ -1,0 +1,25 @@
+.taskContainer{
+    width: 450px;
+}
+.taskContainer .taskForm{
+    display: flex;
+    flex-direction: column;
+}
+.taskLabel{
+    margin: 10px 0px;
+}
+.taskInput{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.taskButton{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    outline: none;
+    margin: 10px 0;
+    background-color: green;
+    color: #fff;
+    font-size: 20px;
+}
