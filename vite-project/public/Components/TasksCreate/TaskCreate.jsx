@@ -37,6 +37,6 @@ function TaskCreate({onCreate}) {
 
 TaskCreate.propTypes = {
     onCreate: PropTypes.func.isRequired, // search bir fonksiyon ise bu şekilde tanımlanır
-  };
+};
 
 export default TaskCreate;

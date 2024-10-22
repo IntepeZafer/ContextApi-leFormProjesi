@@ -1,21 +1,29 @@
 import TaskCreate from '../public/Components/TasksCreate/TaskCreate'
+import TaskList from '../public/Components/TaskList/TaskList'
 import { useState } from 'react'
 import './App.css'
 
 
 function App() {
-  // eslint-disable-next-line no-unused-vars
-  const [count, setCount] = useState(0)
+  const [task, setTask] = useState([])
 
   const createTask = (title , taskDesc) => {
-    console.log(`Task created: ${title} - ${taskDesc}`);
+    const createdTask = [
+      ...task,{
+        id : Math.round(Math.random()*9999),
+        title : title,
+        taskDesc : taskDesc,
+      }
+    ];
+    setTask(createdTask)
   };
-
+  
   return (
     <>
     <div className='App'>
       <TaskCreate onCreate={createTask}/>
       <h1>Görevler</h1>
+      <TaskList tasks={task}/>
     </div>
     </>
   )
