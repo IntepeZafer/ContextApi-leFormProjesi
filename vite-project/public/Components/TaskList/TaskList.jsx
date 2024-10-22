@@ -4,8 +4,8 @@ function TaskList({tasks}) {
     return ( 
     <div>
         {
-            tasks.map((task) => {
-                return <TaskShow></TaskShow>
+            tasks.map((task , index) => {
+                return <TaskShow key={index} task={task}/>
             })
         }
     </div> 
