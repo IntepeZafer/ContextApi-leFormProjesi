@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
+import './TaskListStyle.css'
 import TaskShow from '../TaskShow/TaskShow';
-function TaskList({tasks}) {
+function TaskList({tasks , onDelete , onUpdate}) {
     return ( 
-    <div>
+    <div className='TaskListStyle'>
         {
             tasks.map((task , index) => {
-                return <TaskShow key={index} task={task}/>
+                return <TaskShow key={index} task={task} onDelete={onDelete} onUpdate={onUpdate}/>
             })
         }
     </div> 
@@ -14,6 +15,8 @@ function TaskList({tasks}) {
 
 TaskList.propTypes = {
     tasks: PropTypes.array.isRequired, 
+    onDelete: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
 };
 
 

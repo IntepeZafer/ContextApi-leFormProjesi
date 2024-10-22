@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import './TaskCreateStyle.css'
-function TaskCreate({onCreate}) {
+function TaskCreate({onCreate , task , taskFormUpdate , onUpdate}) {
     
-    const [title, setTitle] = useState("");
-    const [taskDesc, setTaskDesc] = useState("");
+    const [title, setTitle] = useState(task ? task.title : '');
+    const [taskDesc, setTaskDesc] = useState(task ? task.taskDesc : '');
     
     const handleChange = (event) => {
         setTitle(event.target.value);
@@ -15,14 +15,26 @@ function TaskCreate({onCreate}) {
     };
     
     const handleClick = (event) => {
-        onCreate(title , taskDesc);
+        if(taskFormUpdate){
+            onUpdate(task.id , title , taskDesc)
+        }
         setTitle("");
         setTaskDesc("");
         event.preventDefault();
     };
     
     return ( 
-    <div className='taskContainer'>
+        <div>
+            {taskFormUpdate ? <div className='taskContainer taskUpdate'>
+        <h3>Lütfen Taskı Düzenleyiniz!</h3>
+        <form className='taskForm'>
+            <label className='taskLabel'>Başlığı Düzenleyiniz</label>
+            <input value={title} onChange={handleChange} className='taskInput' type="text" />
+            <label className='taskLabel'>Taskı Düzenleyiniz!</label>
+            <textarea value={taskDesc} onChange={handleTaskChange} className='taskInput' rows={5}></textarea>
+            <button className='taskButton' onClick={handleClick}>Düzenle</button>
+        </form>
+    </div> : <div className='taskContainer'>
         <h3>Lütfen Task Ekleyiniz!</h3>
         <form className='taskForm'>
             <label className='taskLabel'>Başlık</label>
@@ -31,12 +43,16 @@ function TaskCreate({onCreate}) {
             <textarea value={taskDesc} onChange={handleTaskChange} className='taskInput' rows={5}></textarea>
             <button className='taskButton' onClick={handleClick}>Oluştur</button>
         </form>
-    </div> 
-);
+    </div>}
+        </div> 
+    );
 }
 
 TaskCreate.propTypes = {
-    onCreate: PropTypes.func.isRequired, // search bir fonksiyon ise bu şekilde tanımlanır
+    onCreate: PropTypes.func.isRequired,
+    task: PropTypes.object.isRequired,
+    taskFormUpdate: PropTypes.object.isRequired,
+    onUpdate : PropTypes.func.isRequired,
 };
 
 export default TaskCreate;

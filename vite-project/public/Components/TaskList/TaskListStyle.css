@@ -1,0 +1,9 @@
+.TaskListStyle{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
+    font-size: 15px;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
