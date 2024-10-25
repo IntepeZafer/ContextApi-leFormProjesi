@@ -15,12 +15,14 @@ function TaskCreate({onCreate , task , taskFormUpdate , onUpdate}) {
     };
     
     const handleClick = (event) => {
+        event.preventDefault();
         if(taskFormUpdate){
             onUpdate(task.id , title , taskDesc)
+        }else{
+            onCreate(title , taskDesc);
         }
         setTitle("");
         setTaskDesc("");
-        event.preventDefault();
     };
     
     return ( 
@@ -51,7 +53,7 @@ function TaskCreate({onCreate , task , taskFormUpdate , onUpdate}) {
 TaskCreate.propTypes = {
     onCreate: PropTypes.func.isRequired,
     task: PropTypes.object.isRequired,
-    taskFormUpdate: PropTypes.object.isRequired,
+    taskFormUpdate: PropTypes.bool.isRequired,
     onUpdate : PropTypes.func.isRequired,
 };
 
