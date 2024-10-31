@@ -1,7 +1,10 @@
+import { TasksContext } from '../Context/Task';
+import { useState  , useContext} from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import './TaskCreateStyle.css'
-function TaskCreate({onCreate , task , taskFormUpdate , onUpdate}) {
+function TaskCreate({task , taskFormUpdate , onUpdate}) {
+
+    const {editTaskById , createTask} = useContext(TasksContext);
     
     const [title, setTitle] = useState(task ? task.title : '');
     const [taskDesc, setTaskDesc] = useState(task ? task.taskDesc : '');
@@ -19,7 +22,7 @@ function TaskCreate({onCreate , task , taskFormUpdate , onUpdate}) {
         if(taskFormUpdate){
             onUpdate(task.id , title , taskDesc)
         }else{
-            onCreate(title , taskDesc);
+            createTask(title , taskDesc)
         }
         setTitle("");
         setTaskDesc("");
@@ -57,4 +60,4 @@ TaskCreate.propTypes = {
     onUpdate : PropTypes.func.isRequired,
 };
 
-export default TaskCreate;
+export default TasksContext;

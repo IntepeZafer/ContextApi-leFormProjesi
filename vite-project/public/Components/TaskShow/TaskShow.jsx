@@ -1,19 +1,23 @@
+import TaskCreate from '../TasksCreate/TaskCreate';
+import { TasksContext } from '../Context/Task';
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import './TaskShowStyle.css'
-import TaskCreate from '../TasksCreate/TaskCreate';
 
-function TaskShow({task , onDelete , onUpdate}) {
+
+function TaskShow({task}) {
+    const {deleteTaskById , editTaskById} = useContext(TasksContext);
     const [showEdit, setShowEdit] = useState(false)
     const handleDeleteClick = () => {
-        onDelete(task.id);
+        deleteTaskById(task.id);
     };
     const handleEditClick = () => {
         setShowEdit(!showEdit);
     };
     const handleClick = (id , updateTitle , updateTaskDesc) => {
         setShowEdit(false);
-        onUpdate(id, updateTitle, updateTaskDesc);
+        editTaskById(id, updateTitle, updateTaskDesc);
     }
     return ( 
         <div className='TaskShowStyle'>

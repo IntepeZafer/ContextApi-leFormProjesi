@@ -1,12 +1,16 @@
+import TaskShow from '../TaskShow/TaskShow';
+import TasksContext from '../Context/Task';
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './TaskListStyle.css'
-import TaskShow from '../TaskShow/TaskShow';
-function TaskList({tasks , onDelete , onUpdate}) {
+
+function TaskList() {
+    const {task} = useContext(TasksContext);
     return ( 
     <div className='TaskListStyle'>
         {
-            tasks.map((task , index) => {
-                return <TaskShow key={index} task={task} onDelete={onDelete} onUpdate={onUpdate}/>
+            task.map((task , index) => {
+                return <TaskShow key={index} task={task}/>
             })
         }
     </div> 
